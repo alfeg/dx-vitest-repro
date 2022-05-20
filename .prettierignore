@@ -1,0 +1,15 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+.vscode
+devextreme.json
+src/themes/generated/*
+src/themes/metadata.json
+*.md
+index.html
+package.json
+package-lock.json
+src/components.d.ts
+tsconfig.json
