@@ -1,29 +1,26 @@
-import { UserConfig } from 'vitest/config'
-import { defineConfig } from 'vite'
+import { UserConfig } from "vitest/config"
+import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
-
 
 // https://vitejs.dev/config/
 export default defineConfig((context) => {
     const config: UserConfig = {
-
         test: {
             globals: true,
             environment: "jsdom",
+            setupFiles: ["setup-mocks.ts"],
+            include: ["**/*.spec *.ts", "**/*.spec.ts"],
             environmentOptions: {
                 jsdom: {
                     pretendToBeVisual: true,
                     includeNodeLocations: true,
+                    runScripts: "dangerously",
                 },
             },
             clearMocks: true,
         },
 
-        plugins: [
-           
-            vue(),
-
-        ],
+        plugins: [vue()],
 
         define: {
             // adding app version
@@ -38,7 +35,6 @@ export default defineConfig((context) => {
             alias: {
                 //"devextreme/ui": "devextreme/esm/ui",
                 "@/": "/src/",
-
             },
         },
     }

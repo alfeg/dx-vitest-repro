@@ -1,7 +1,7 @@
 <template>
-<div><Hello name="world"></Hello></div>
+    <div><Hello name="world"></Hello></div>
 </template>
 
 <script lang="ts" setup>
-import Hello from './components/Hello.vue';
+import Hello from "./components/Hello.vue"
 </script>
