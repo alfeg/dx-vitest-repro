@@ -10,13 +10,6 @@ export default defineConfig((context) => {
             environment: "jsdom",
             setupFiles: ["setup-mocks.ts"],
             include: ["**/*.spec *.ts", "**/*.spec.ts"],
-            environmentOptions: {
-                jsdom: {
-                    pretendToBeVisual: true,
-                    includeNodeLocations: true,
-                    runScripts: "dangerously",
-                },
-            },
             clearMocks: true,
         },
 

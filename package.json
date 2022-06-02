@@ -9,6 +9,7 @@
     "devextreme": "^21.2.7",
     "devextreme-aspnet-data-nojquery": "^2.8.6",
     "devextreme-vue": "^21.2.7",
+    "happy-dom": "^5.0.0",
     "jsdom": "^19.0.0",
     "vue": "^3.2.36"
   },
