@@ -1,6 +1,23 @@
+import { describe, it, vi } from "vitest";
+
+
+vi.mock("devextreme/core/utils/type", async ()=> {
+    const actualModule = await vi.importActual("devextreme/esm/core/utils/type") as any;
+    
+    const isPlainObject = vi.fn((object)=>{
+        console.log("isPlainObject mocked");
+        if (!object || "[object Object]" !== Object.prototype.toString.call(object)) {
+            return false
+        }
+        var proto = Object.getPrototypeOf(object);
+        var ctor = Object.hasOwnProperty.call(proto, "constructor") && proto.constructor;
+        return "function" === typeof ctor && Object.toString.call(ctor) === Object.toString.call(Object)
+    })
+    return {__esModule: true, ...actualModule, isPlainObject}
+})
+
 import Hello from "./Hello.vue"
 import { mount } from "@vue/test-utils"
-import { describe, it } from "vitest"
 
 describe.concurrent("Hello", () => {
     it.concurrent("should work 1", async () => {
@@ -15,171 +32,5 @@ describe.concurrent("Hello", () => {
         await main.trigger("click")
     })
 
-    it.concurrent("should work 2", async () => {
-        const wrapper = mount(Hello, {
-            props: {
-                name: "Hello",
-            },
-        })
-
-        const main = wrapper.get("#main")
-        expect(main.text()).toBe("Hello Hello")
-        await main.trigger("click")
-    })
-
-    it.concurrent("should work 3", async () => {
-        const wrapper = mount(Hello, {
-            props: {
-                name: "Hello",
-            },
-        })
-
-        const main = wrapper.get("#main")
-        expect(main.text()).toBe("Hello Hello")
-        await main.trigger("click")
-    })
-
-    it.concurrent("should work 4", async () => {
-        const wrapper = mount(Hello, {
-            props: {
-                name: "Hello",
-            },
-        })
-
-        const main = wrapper.get("#main")
-        expect(main.text()).toBe("Hello Hello")
-        await main.trigger("click")
-    })
-
-    it.concurrent("should work 5", async () => {
-        const wrapper = mount(Hello, {
-            props: {
-                name: "Hello",
-            },
-        })
-
-        const main = wrapper.get("#main")
-        expect(main.text()).toBe("Hello Hello")
-        await main.trigger("click")
-    })
-
-    it.concurrent("should work 6", async () => {
-        const wrapper = mount(Hello, {
-            props: {
-                name: "Hello",
-            },
-        })
-
-        const main = wrapper.get("#main")
-        expect(main.text()).toBe("Hello Hello")
-        await main.trigger("click")
-    })
-
-    it.concurrent("should work 7", async () => {
-        const wrapper = mount(Hello, {
-            props: {
-                name: "Hello",
-            },
-        })
-
-        const main = wrapper.get("#main")
-        expect(main.text()).toBe("Hello Hello")
-        await main.trigger("click")
-    })
-
-    it.concurrent("should work 8", async () => {
-        const wrapper = mount(Hello, {
-            props: {
-                name: "Hello",
-            },
-        })
-
-        const main = wrapper.get("#main")
-        expect(main.text()).toBe("Hello Hello")
-        await main.trigger("click")
-    })
-
-    it.concurrent("should work 81", async () => {
-        const wrapper = mount(Hello, {
-            props: {
-                name: "Hello",
-            },
-        })
-
-        const main = wrapper.get("#main")
-        expect(main.text()).toBe("Hello Hello")
-        await main.trigger("click")
-    })
-
-    it.concurrent("should work 82", async () => {
-        const wrapper = mount(Hello, {
-            props: {
-                name: "Hello",
-            },
-        })
-
-        const main = wrapper.get("#main")
-        expect(main.text()).toBe("Hello Hello")
-        await main.trigger("click")
-    })
-
-    it.concurrent("should work 83", async () => {
-        const wrapper = mount(Hello, {
-            props: {
-                name: "Hello",
-            },
-        })
-
-        const main = wrapper.get("#main")
-        expect(main.text()).toBe("Hello Hello")
-        await main.trigger("click")
-    })
-
-    it.concurrent("should work 84", async () => {
-        const wrapper = mount(Hello, {
-            props: {
-                name: "Hello",
-            },
-        })
-
-        const main = wrapper.get("#main")
-        expect(main.text()).toBe("Hello Hello")
-        await main.trigger("click")
-    })
-
-    it.concurrent("should work 85", async () => {
-        const wrapper = mount(Hello, {
-            props: {
-                name: "Hello",
-            },
-        })
-
-        const main = wrapper.get("#main")
-        expect(main.text()).toBe("Hello Hello")
-        await main.trigger("click")
-    })
-
-    it.concurrent("should work 86", async () => {
-        const wrapper = mount(Hello, {
-            props: {
-                name: "Hello",
-            },
-        })
-
-        const main = wrapper.get("#main")
-        expect(main.text()).toBe("Hello Hello")
-        await main.trigger("click")
-    })
-
-    it.concurrent("should work 87", async () => {
-        const wrapper = mount(Hello, {
-            props: {
-                name: "Hello",
-            },
-        })
-
-        const main = wrapper.get("#main")
-        expect(main.text()).toBe("Hello Hello")
-        await main.trigger("click")
-    })
+    
 })

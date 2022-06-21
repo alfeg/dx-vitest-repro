@@ -18,6 +18,9 @@ export default defineConfig((context) => {
                 },
             },
             clearMocks: true,
+            deps: {
+                inline: ["devextreme"]
+            }
         },
 
         plugins: [vue()],
@@ -32,8 +35,9 @@ export default defineConfig((context) => {
         },
 
         resolve: {
+            mainFields: ["module"],
             alias: {
-                //"devextreme/ui": "devextreme/esm/ui",
+                // "devextreme/ui": "devextreme/esm/ui",
                 "@/": "/src/",
             },
         },
