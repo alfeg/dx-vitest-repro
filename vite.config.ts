@@ -1,8 +1,9 @@
 import { UserConfig } from "vitest/config"
 import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
-
+import { viteCommonjs } from "@originjs/vite-plugin-commonjs"
 // https://vitejs.dev/config/
+//@ts-ignore
 export default defineConfig((context) => {
     const config: UserConfig = {
         test: {
@@ -17,10 +18,13 @@ export default defineConfig((context) => {
                     runScripts: "dangerously",
                 },
             },
-            clearMocks: true,
+            deps: {
+                inline: ["devextreme"],
+            },
+            //  clearMocks: true,
         },
-
-        plugins: [vue()],
+        //@ts-ignore
+        plugins: [vue(), viteCommonjs(["devextreme"])],
 
         define: {
             // adding app version
@@ -32,6 +36,7 @@ export default defineConfig((context) => {
         },
 
         resolve: {
+            mainFields: ["module"],
             alias: {
                 //"devextreme/ui": "devextreme/esm/ui",
                 "@/": "/src/",
@@ -41,7 +46,7 @@ export default defineConfig((context) => {
 
     if (context.command == "serve") {
         // fix for warning: You are running production build of Inferno in development mode.
-        config.resolve.alias["inferno"] = "inferno/dist/index.dev.esm.js"
+        if (config?.resolve?.alias) config.resolve.alias["inferno"] = "inferno/dist/index.dev.esm.js"
     }
 
     return config
